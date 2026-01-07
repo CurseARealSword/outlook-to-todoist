@@ -40,20 +40,6 @@ mkdir -p ~/Library/Scripts/Applications/Microsoft\ Outlook
 cp scripts/OutlookToTodoist.applescript ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applescript
 ```
 
-If you prefer a one-liner install, use the helper script:
-
-```sh
-scripts/install.sh
-```
-
-To install into the Outlook Script menu location instead:
-
-```sh
-scripts/install.sh --outlook
-```
-
-(or use `OUTLOOK_MENU=1 scripts/install.sh`)
-
 ## automator quick action (short how‑to)
 
 Assuming you already have a Quick Action set up, you can point it at the `.applescript`:
