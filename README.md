@@ -11,7 +11,7 @@
 - uses the todoist rest api (no browser automation, no add-ins)
 - stores the todoist api token securely in macos keychain
 - intended to be simple  and easy to extend incrementally
-- prompts for an optional due date/time (e.g. `tomorrow 3pm`, `2026-01-09 09:00`)
+- prompts for an optional due date/time
 - prompts for a task title with the email subject as the default (leave blank to keep subject)
 
 ## due date/time examples
@@ -31,13 +31,6 @@ Copy the source `.applescript` into your Scripts folder.
 ```sh
 mkdir -p ~/Library/Scripts
 cp scripts/OutlookToTodoist.applescript ~/Library/Scripts/OutlookToTodoist.applescript
-```
-
-If you want the script to appear under Outlook’s Script menu, place it in the Outlook-specific Scripts folder instead:
-
-```sh
-mkdir -p ~/Library/Scripts/Applications/Microsoft\ Outlook
-cp scripts/OutlookToTodoist.applescript ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applescript
 ```
 
 ## automator quick action (short how‑to)
@@ -67,3 +60,4 @@ rm -f ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applesc
 
 - ~~add guide for storing secrets in keychain~~
 - ~~create functionality to add time, date & alternative title directly from outlook~~
+- ~~add timestamp and sender info to task description~~
