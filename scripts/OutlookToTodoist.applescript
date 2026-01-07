@@ -4,10 +4,11 @@ create a Todoist task from the currently selected message in outlook for mac.
 - Adds an outlook:// link in the task description
 *)
 
-set TODOIST_TOKEN to do shell script "security find-generic-password -a $USER -s todoist_api_token -w"
+property TODOIST_TOKEN : missing value
 property TODOIST_PROJECT_ID : "2312236412"
 
 on run
+	set TODOIST_TOKEN to do shell script "security find-generic-password -a $USER -s todoist_api_token -w"
 	tell application "Microsoft Outlook"
 		set sel to selected objects
 		if sel is {} then
