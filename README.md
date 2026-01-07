@@ -65,5 +65,5 @@ rm -f ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applesc
 
 ## roadmap
 
-- add guide for storing secrets in keychain
-- create functionality to add time, date & alternative title directly from outlook
+- ~~add guide for storing secrets in keychain~~
+- ~~create functionality to add time, date & alternative title directly from outlook~~
