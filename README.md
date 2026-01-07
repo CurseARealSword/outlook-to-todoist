@@ -26,20 +26,19 @@ Todoist accepts natural language. Examples you can enter in the prompt:
 
 ## install the script locally
 
-Compile the source `.applescript` into a `.scpt` file and place it in your Scripts folder so it can be run from the macOS Script menu.
+Copy the source `.applescript` into your Scripts folder.
 
 ```sh
 mkdir -p ~/Library/Scripts
-osacompile -o ~/Library/Scripts/OutlookToTodoist.scpt scripts/OutlookToTodoist.applescript
+cp scripts/OutlookToTodoist.applescript ~/Library/Scripts/OutlookToTodoist.applescript
 ```
 
 If you want the script to appear under Outlook’s Script menu, place it in the Outlook-specific Scripts folder instead:
 
 ```sh
 mkdir -p ~/Library/Scripts/Applications/Microsoft\ Outlook
-osacompile -o ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.scpt scripts/OutlookToTodoist.applescript
+cp scripts/OutlookToTodoist.applescript ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applescript
 ```
-
 
 If you prefer a one-liner install, use the helper script:
 
@@ -55,22 +54,27 @@ scripts/install.sh --outlook
 
 (or use `OUTLOOK_MENU=1 scripts/install.sh`)
 
-## automator (short how‑to)
+## automator quick action (short how‑to)
 
-Assuming you already have a shortcut set up, you can point it to the compiled `.scpt`:
+Assuming you already have a Quick Action set up, you can point it at the `.applescript`:
 
-1. Open Automator and your existing workflow.
-2. Add (or update) a “Run AppleScript” action.
-3. Replace the default script with `run script (POSIX file "~/Library/Scripts/OutlookToTodoist.scpt")`.
+1. Open Automator and your existing Quick Action.
+2. Add (or update) a “Run Shell Script” action.
+3. Use this command:
+
+```sh
+/usr/bin/osascript "$HOME/Library/Scripts/OutlookToTodoist.applescript"
+```
+
 4. Save the workflow.
 
 ## uninstall
 
-Remove the compiled script from whichever location you installed it:
+Remove the script from whichever location you installed it:
 
 ```sh
-rm -f ~/Library/Scripts/OutlookToTodoist.scpt
-rm -f ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.scpt
+rm -f ~/Library/Scripts/OutlookToTodoist.applescript
+rm -f ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applescript
 ```
 
 ## roadmap

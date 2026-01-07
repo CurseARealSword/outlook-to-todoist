@@ -13,6 +13,6 @@ if [[ "${1:-}" == "--outlook" || "${OUTLOOK_MENU:-}" == "1" ]]; then
 fi
 
 mkdir -p "$TARGET_DIR"
-/usr/bin/osacompile -o "$TARGET_DIR/OutlookToTodoist.scpt" "$SRC"
+cp "$SRC" "$TARGET_DIR/OutlookToTodoist.applescript"
 
-echo "Installed to: $TARGET_DIR/OutlookToTodoist.scpt"
+echo "Installed to: $TARGET_DIR/OutlookToTodoist.applescript"
