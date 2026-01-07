@@ -81,4 +81,3 @@ rm -f ~/Library/Scripts/Applications/Microsoft\ Outlook/OutlookToTodoist.applesc
 
 - add guide for storing secrets in keychain
 - create functionality to add time, date & alternative title directly from outlook
-- automate conversion from .applescript in repo to .script in the correct local folder (`~/Library/Scripts`)
