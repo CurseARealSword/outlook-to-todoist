@@ -19,6 +19,8 @@ on run
 		set msg to item 1 of sel
 		set msgSubject to subject of msg
 		set msgId to id of msg
+		set msgSender to sender of msg
+		set msgReceived to time received of msg
 	end tell
 	
 	set outlookUrl to "outlook://" & msgId
@@ -35,7 +37,24 @@ on run
 	set taskContent to my trim_text(text returned of titleDialog)
 	if taskContent is "" then set taskContent to msgSubject
 	
-	set taskDescription to "Email link: " & outlookUrl
+	set senderName to ""
+	set senderAddress to ""
+	try
+		set senderName to name of msgSender
+	end try
+	try
+		set senderAddress to address of msgSender
+	end try
+	set senderLine to senderName
+	if senderLine is "" then set senderLine to senderAddress
+	if senderLine is "" then set senderLine to (msgSender as string)
+	if senderAddress is not "" and senderLine does not contain senderAddress then
+		set senderLine to senderLine & " <" & senderAddress & ">"
+	end if
+	
+	set taskDescription to "Email link: " & outlookUrl & return & ¬
+		"From: " & senderLine & return & ¬
+		"Received: " & (msgReceived as string)
 	
 	set json to "{\"content\":" & my json_escape(taskContent) & ",\"description\":" & my json_escape(taskDescription)
 	if TODOIST_PROJECT_ID is not "" then
