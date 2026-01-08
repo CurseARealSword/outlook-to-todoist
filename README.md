@@ -7,7 +7,7 @@
 - designed for environments where the official todoist outlook add-in cannot be used (outlook add-ins disallowed because of corporate policy)
 - implemented in applescript and run locally via automator (or similar)
 - creates a todoist task using the email subject as the task title
-- adds an outlook deep link, sender, and received time to the task description to jump back to the original email
+- adds an outlook deep link, sender, and received time to the task description to jump back to the original email (_note: the outlook message IDs do not appear to be global. Deep links will likely only work on the computer where they were generated._ )
 - uses the todoist rest api (no browser automation, no add-ins)
 - stores the todoist api token securely in macos keychain
 - intended to be simple  and easy to extend incrementally
@@ -17,7 +17,6 @@
 ## due date/time examples
 
 Todoist accepts natural language. Examples you can enter in the prompt:
-
 - `today`
 - `tomorrow 9am`
 - `next monday 14:30`
@@ -33,7 +32,7 @@ mkdir -p ~/Library/Scripts
 cp scripts/OutlookToTodoist.applescript ~/Library/Scripts/OutlookToTodoist.applescript
 ```
 
-## automator quick action (short how‑to)
+## automator quick action
 
 Assuming you already have a Quick Action set up, you can point it at the `.applescript`:
 
