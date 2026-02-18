@@ -65,17 +65,33 @@ on run
 	end if
 	set json to json & "}"
 	
-	set cmd to "curl -sS -X POST https://api.todoist.com/rest/v2/tasks " & ¬
+	-- write response body to temp file and print  HTTP status code
+	set respPath to "/tmp/todoist_create_task.json"
+
+	set cmd to "curl -sS -X POST https://api.todoist.com/api/v1/tasks " & ¬
 		"-H " & quoted form of ("Authorization: Bearer " & TODOIST_TOKEN) & " " & ¬
 		"-H " & quoted form of "Content-Type: application/json" & " " & ¬
-		"--data " & quoted form of json
-	
+		"--data " & quoted form of json & " " & ¬
+		"-o " & quoted form of respPath & " " & ¬
+		"-w %{http_code}"
+
 	try
-		do shell script cmd
-		display notification "created task in Todoist." with title "Outlook → Todoist"
-	on error errMsg number errNum
-		display dialog "Failed to create task." & return & return & errMsg buttons {"OK"} default button "OK"
+		set httpCode to do shell script cmd
+	on error errMsg
+		display dialog "network/curl error:" & return & errMsg buttons {"ok"} default button "ok"
+		return input
 	end try
+
+	set respBody to ""
+	try
+		set respBody to do shell script "cat " & quoted form of respPath
+	end try
+
+	-- todoist usually returns 200 for success with a JSON task body
+	if httpCode is not "200" then
+		display dialog "todoist api error (" & httpCode & "):" & return & respBody buttons {"ok"} default button "ok"
+		return input
+	end if
 end run
 
 -- Simple JSON string escaper for AppleScript
