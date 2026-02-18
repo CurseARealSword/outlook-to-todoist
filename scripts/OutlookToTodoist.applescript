@@ -1,6 +1,6 @@
 (*
 create a Todoist task from the currently selected message in outlook for mac.
-- Uses Todoist REST v2 /tasks endpoint
+- Uses Todoist API v1 /tasks endpoint
 - Adds an outlook:// link in the task description
 *)
 
